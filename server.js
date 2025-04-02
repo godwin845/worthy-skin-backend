@@ -94,16 +94,16 @@ app.post('/login', async (req, res) => {
 const adminUsername = "Admin";
 const adminPassword = "123";
 
-app.post('/adminlogin', (req, res) => {
+app.post('/adminLogin', (req, res) => {
     const { username, password } = req.body;
   
     if (username === adminUsername && password === adminPassword) {
   
       const token = jwt.sign({ username: adminUsername }, process.env.JWT_SECRET);
   
-      res.json({ success: true, message: 'Login successful', token });
+      res.status(200).json({ message: 'Login successful', token });
     } else {
-      res.status(401).json({ success: false, message: 'Invalid username or password' });
+      res.status(500).json({ message: 'Invalid username or password' });
     }
   });
 
